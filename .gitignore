@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Conda / venv
+.env
+.venv
+env/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data — raw and extracted frames (too large for git)
+data/
+
+# Outputs — generated at runtime
+outputs/
+
+# Checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# YAML secrets (if any added later)
+secrets.yaml

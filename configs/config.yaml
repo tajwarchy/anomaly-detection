@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────
+#  Project V2.2 — Anomaly Detection Config
+# ─────────────────────────────────────────────
+
+dataset:
+  name: ucsd_ped2
+  train_dir: data/ucsd_ped1/training/frames 
+  test_dir: data/ucsd_ped2/testing/frames
+  gt_mask_dir: data/ucsd_ped2/testing/gt_masks
+  resolution: [256, 256]           # [H, W]
+
+model:
+  architecture: cae                # cae | unet
+  input_channels: 1                # 1 = grayscale only | 2 = grayscale + flow
+  base_channels: 32                # encoder first conv output channels
+  latent_dim: 512
+
+training:
+  epochs: 50
+  batch_size: 32
+  lr: 0.0001
+  val_split: 0.1
+  num_workers: 2                   # Colab only — M1 uses 0
+
+flow:
+  enabled: false                   # toggle optical flow channel
+  method: farneback                # farneback | raft
+
+inference:
+  device: mps                      # mps | cpu
+  num_workers: 0                   # always 0 on M1
+  resolution: [256, 256]
+  threshold_percentile: 95         # percentile of train recon errors for binary mask
+  temporal_window: 7               # Gaussian smoothing window size
+  temporal_sigma: 2.0
+
+visualization:
+  heatmap_alpha: 0.5               # blend weight for heatmap overlay
+  score_graph_frames: 100          # rolling window length for score strip
+  anomaly_color: [0, 0, 255]       # BGR red banner color
+
+output:
+  checkpoint_dir: outputs/checkpoints
+  checkpoint_name: best_model.pth
+  flagged_clip_dir: outputs/flagged_clips
+  annotated_video_path: outputs/annotated_video/output_annotated.mp4
+  heatmap_dir: outputs/heatmaps
+  clip_padding_frames: 30          # frames of padding before/after flagged segment
+  video_fps: 10                    # UCSD Ped2 native FPS
