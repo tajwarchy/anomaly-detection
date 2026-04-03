@@ -4,27 +4,30 @@
 
 dataset:
   name: ucsd_ped2
-  train_dir: data/ucsd_ped1/training/frames 
+  train_dir: data/combined_normal/frames    # ← new combined source
   test_dir: data/ucsd_ped2/testing/frames
   gt_mask_dir: data/ucsd_ped2/testing/gt_masks
-  resolution: [256, 256]           # [H, W]
+  resolution: [256, 256]
 
 model:
-  architecture: cae                # cae | unet
-  input_channels: 1                # 1 = grayscale only | 2 = grayscale + flow
-  base_channels: 32                # encoder first conv output channels
-  latent_dim: 512
+  architecture: cae
+  input_channels: 2        # ← changed from 1
+  base_channels: 16
+  latent_dim: 128
+
 
 training:
-  epochs: 50
+  epochs: 60               # ← slightly more epochs for smaller model
   batch_size: 32
   lr: 0.0001
   val_split: 0.1
-  num_workers: 2                   # Colab only — M1 uses 0
+  num_workers: 2
+
 
 flow:
-  enabled: false                   # toggle optical flow channel
-  method: farneback                # farneback | raft
+  enabled: true            # ← changed from false
+  method: farneback
+
 
 inference:
   device: mps                      # mps | cpu
@@ -41,7 +44,7 @@ visualization:
 
 output:
   checkpoint_dir: outputs/checkpoints
-  checkpoint_name: best_model.pth
+  checkpoint_name: best_model_flow.pth   # ← new name
   flagged_clip_dir: outputs/flagged_clips
   annotated_video_path: outputs/annotated_video/output_annotated.mp4
   heatmap_dir: outputs/heatmaps
