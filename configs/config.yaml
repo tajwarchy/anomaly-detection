@@ -36,6 +36,9 @@ inference:
   threshold_percentile: 95         # percentile of train recon errors for binary mask
   temporal_window: 7               # Gaussian smoothing window size
   temporal_sigma: 2.0
+  score_graph_frames: 100        # ← add this line
+  detection_threshold: 0.5      # ← add this
+
 
 visualization:
   heatmap_alpha: 0.5               # blend weight for heatmap overlay
@@ -44,9 +47,9 @@ visualization:
 
 output:
   checkpoint_dir: outputs/checkpoints
-  checkpoint_name: best_model_flow.pth   # ← new name
+  checkpoint_name: best_model_flow.pth
   flagged_clip_dir: outputs/flagged_clips
   annotated_video_path: outputs/annotated_video/output_annotated.mp4
   heatmap_dir: outputs/heatmaps
-  clip_padding_frames: 30          # frames of padding before/after flagged segment
-  video_fps: 10                    # UCSD Ped2 native FPS
+  clip_padding_frames: 30
+  video_fps: 10
