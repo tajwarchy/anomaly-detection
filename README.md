@@ -152,7 +152,7 @@ project-v2.2-anomaly-detection/
 ### 1. Clone & create environment
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/project-v2.2-anomaly-detection.git
+git clone https://github.com/tajwarchy/project-v2.2-anomaly-detection.git
 cd project-v2.2-anomaly-detection
 conda env create -f environment.yml
 conda activate anomaly-det
