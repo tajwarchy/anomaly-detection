@@ -65,7 +65,7 @@ Training frames (normal only)
 
 | ROC Curve | Score Timeline | Error Distribution |
 |:---:|:---:|:---:|
-| ![ROC](outputs/roc_curve.png) | ![Timeline](outputs/score_timeline.png) | ![Dist](outputs/error_distribution.png) |
+| ![ROC](roc_curve.png) | ![Timeline](score_timeline.png) | ![Dist](error_distribution.png) |
 
 ### Iteration History
 
